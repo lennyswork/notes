@@ -1,0 +1,2 @@
+python中正则表达式
+re.compile(strPattern[, flag]): 这个方法是Pattern类的工厂方法，用于将字符串形式的正则表达式编译为Pattern对象。 第二个参数flag是匹配模式，取值可以使用按位或运算符’|’表示同时生效

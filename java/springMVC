@@ -1,0 +1,6 @@
+@Autowired的用法和作用
+这个注解就是spring可以自动帮你把bean里面引用的对象的setter/getter方法省略，它会自动帮你set/get
+
+@Resource 的作用相当于 @Autowired，只不过 @Autowired 按 byType 自动注入，面 @Resource 默认按 byName自动注入罢了
+
+@Required注解用于检查特定的属性是否设置

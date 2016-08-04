@@ -1,0 +1,32 @@
+rails路由笔记
+自己的理解
+
+路由分为资源式路由　非资源式路由
+
+资源式路由可使用REST
+功能中携带的参数会有一定限制
+
+非资源式路由　可以把任意URL映射到动作上
+
+
+rails g controller welcome
+这个能够在rails中新增路由
+rails d controller welcome
+逆天框架,开发与删除都在一条命令之间
+
+config.ru 基于 Rack 服务器的程序设置，用来启动程序
+
+CSRF　跨站请求伪造
+
+Action中处理request
+1　收集request的资讯
+2　操作model来做资料的处理
+3　回传response结果,这个动作为render
+
+就算你什麼都不處理，Action方法裡面空空如也，甚至不定義Action，Rails預設也還是會執行render方法。這個render方法會回傳預設的Template，依照Rails慣例就是app/views/{controller_name}/{action_name}
+
+
+routes.rb中，越上面的路由规则越优先
+
+
+
