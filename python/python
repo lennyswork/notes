@@ -1,2 +1,28 @@
 python中正则表达式
 re.compile(strPattern[, flag]): 这个方法是Pattern类的工厂方法，用于将字符串形式的正则表达式编译为Pattern对象。 第二个参数flag是匹配模式，取值可以使用按位或运算符’|’表示同时生效
+
+
+re.match(pattern, string, flags=0)
+flags 标志位　用于控制正则表达式的匹配方式
+
+group(num=0) 匹配的整个表达式的字符串
+groups()　返回一个包含所有小组字符串的元组，从１到包含的小组号
+
+
+re.I　大小写不敏感
+re.M 多行匹配,影响^和$
+
+re.match只匹配字符串的开始　
+re.rearch匹配整个字符串,直到找到一个匹配
+
+re.sub(pattern, repl, string, max=0)
+
+正则表达式模式与ruby和shell中类似
+
+re?匹配０个或１个由前面的正则表达式定义的片段，非贪婪模式
+
+常用的
+\w 匹配字母数字及下划线
+\s 匹配任意空白字符
+\d 匹配任意数字
+

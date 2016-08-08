@@ -1,0 +1,5 @@
+这是由于git默认拒绝了push操作，需要进行设置，修改.git/config添加如下代码：
+    [receive]
+    denyCurrentBranch = ignore
+
+在初始化远程仓库时最好使用 git --bare init   而不要使用：git init

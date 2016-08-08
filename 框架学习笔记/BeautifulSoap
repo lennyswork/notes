@@ -20,5 +20,7 @@ from bs4 import BeautifulSoup
 soup = BeautifulSoup(open("index.html"))
 soup = BeautifulSoup("<html>data</html>")
 
+通过点取属性的方式只能获得当前名字的第一个tag:
+
 
 网页是容易抓取下来,但其实难的是分析结构　
