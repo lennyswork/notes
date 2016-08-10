@@ -5,3 +5,36 @@
 rails db:migrate 执行数据库迁移
 rails db:rollback 执行数据库迁移回滚
 
+名为 id 的主键字段会被自动创建。id 字段是所有 Active Record 模型的默认主键。timestamps 方法创建两个字段：created_at 和 updated_at。如果数据表中有这两个字段，Active Record 会负责操作。
+
+$ rails generate migration AddDetailsToProducts part_number:string price:decimal
+可以直接在命令行中建立新增的字段
+
+在字段类型后面，可以在花括号中添加选项。可用的修饰符如下：
+limit：设置 string/text/binary/integer 类型字段的最大值；
+precision：设置 decimal 类型字段的精度，即数字的位数；
+scale：设置 decimal 类型字段小数点后的数字位数；
+polymorphic：为 belongs_to 关联添加 type 字段；
+null：是否允许该字段的值为 NULL；
+
+
+在迁移中可以不用 change 方法，而用 up 和 down 方法。up 方法定义要对数据库模式做哪些操作，down 方法用来撤销这些操作。
+
+注意，执行 db:migrate 时还会执行 db:schema:dump，更新 db/schema.rb 文件，匹配数据库的结构。
+
+$ rake db:rollback STEP=3
+这个命令会撤销前三次迁移。
+
+迁移的作用并不是为数据库模式提供可信的参考源。db/schema.rb 或由 Active Record 生成的 SQL 文件才有这个作用。db/schema.rb 这些文件不可修改，其目的是表示数据库的当前结构
+
+
+Rails 提供了“种子”功能，可以把初始化数据存入数据库。这个功能用起来很简单，在 db/seeds.rb 文件中写一些 Ruby 代码，然后执行 rake db:seed 命令即可：
+
+5.times do |i|
+  Product.create(name: "Product ##{i}", description: "A product.")
+end
+
+
+vendor/assets
+可將第三方的CSS/JavaScript函式庫(沒有提供Gem安裝版本的)複製一份放在這裡。
+

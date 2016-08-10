@@ -2,3 +2,7 @@ crontab 的时间表达式
 *　　*　　*　　*　　*　　command
 分　时　日　月　周　命令
 周的取值是星期几
+
+
+sudo apt-get -f -y install
+解决这个的依赖问题

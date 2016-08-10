@@ -3,3 +3,8 @@
     denyCurrentBranch = ignore
 
 在初始化远程仓库时最好使用 git --bare init   而不要使用：git init
+
+
+git push -f 中把远程仓库覆盖掉之后还有办法恢复么？
+
+git fetch 可以从远程仓库抓取数据到本地
