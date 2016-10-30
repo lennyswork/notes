@@ -35,6 +35,103 @@ routes.rb中，越上面的路由规则越优先
 route文件中的root　就是所谓的根目录
 
 
+Active Record查询
+
+获取单个对象　
+
+使用 Model.find(primary_key) 方法可以获取指定主键对应的对象
+
+Model.take会获取一个记录，不考虑任何顺序
+若没有找到记录，Model.take不会抛出异常，而是返回nil
+
+Model.first获取主键排序的第一个记录
+
+Model.last获取主键排序得到的最后一个记录
+
+Model.find_by获取满足条件的第一个记录
+
+Model.take! 方法会获取一个记录，不考虑任何顺序
+如果未找到匹配的记录，Model.take! 会抛出 ActiveRecord::RecordNotFound 异常
+
+first!,last!,find_by!,take!是类似的效果
+
+
+获取多个对象
+Model.find(array_of_primary_key) 方法可接受一个由主键组成的数组，返回一个由主键对应记录组成的数组
+Model.take(limit) 方法获取 limit 个记录，不考虑任何顺序
+Model.first(limit) 方法获取按主键排序的前 limit 个记录
+Model.last(limit) 方法获取按主键降序排列的前 limit 个记录
+
+Model.count 返回数量
+
+find_each 和 find_in_batches 方法的目的是分批处理无法一次载入内存的巨量记录。如果只想遍历几千个记录，更推荐使用常规的查询方法
+
+find_each 方法获取一批记录，然后分别把每个记录传入代码块
+
+
+rails的设计思想应该是，只要创建的时候可以创建的，都是可以手动进行修改的似乎这个是这样子，但是我们可以做一些其它的，比如根据输入参数来进行各种操作，还有分页的功能
+
+没想到这个复用之前创建的表那么容易，只要为它设置一个别名就好了
+
+从控制器的角度来看，创建HTTP响应有三种方法：
+１.调用render 方法，向浏览器发送一个完整的响应
+２ 调用redirect_to方法，向浏览器发送一个HTTP重定向状态码
+３ 调用head方法,向浏览器发送只包含报头的响应
+
+
+查找布局时，Rails 首先查看 app/views/layouts 文件夹中是否有和控制器同名的文件。例如，渲染 PhotosController 控制器中的动作会使用 app/views/layouts/photos.html.erb（或 app/views/layouts/photos.builder）。如果没找到针对控制器的布局，Rails 会使用 app/views/layouts/application.html.erb 或 app/views/layouts/application.builder。如果没有 .erb 布局，Rails 会使用 .builder 布局（如果文件存在）
+
+
+respond_to可以用來回應不同的資料格式
+
+突然明白了所谓的REST，就是通过请求的get post put delete来进行资源操作，而不是之前通过不同的接口地址
+刚好预估了所有可能出现的互联网的情况
+
+ActiveRecord可以用Associations來定義資料表之間的關聯性
+Primary Key這個欄位在Rails中，照慣例叫做id，型別是整數且遞增。而Foreign Key欄位照慣例會叫做{model_name}_id，型別是整數
+
+
+rails generate controller Sessions new
+会连视图层也一起创建
+
+
+rails中flash，用处是redirect时,能够从一个request传递到下一个request
+
+rails中的filter
+可將Controller中重複的程式抽出來，有三種方法可以定義在進入Action之前、之中或之後執行特定方法，分別是before_action、after_action和around_action，其中before_action最為常用。這三個方法可以接受Code block、一個Symbol方法名稱或是一個物件(Rails會呼叫此物件的filter方法)
+
+其实可以通过新建一个控制类来继承基础控制类，需要用户登陆才能查看的接口就继承那个类
+不过看着好像还需要指定对应接口才能使用～
+
+rails坚持的是测试驱动开发TDD
+
+before_action :logged_in_user, only: [:edit, :update]
+To require users to be logged in, we define a logged_in_user method and invoke it using before_action :logged_in_user
+By default, before filters apply to every action in a controller, so here we restrict the filter to act only on the :edit and :update actions by passing the appropriate only: options hash.
+
+db:seed会去执行　seeds.rb　中的内容
+
+
+使用分页的一种方法
+gem 'will_paginate',           '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
+
+
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= gravatar_for user, size: 50 %>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
 
 
 

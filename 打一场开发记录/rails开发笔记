@@ -38,3 +38,9 @@ end
 vendor/assets
 可將第三方的CSS/JavaScript函式庫(沒有提供Gem安裝版本的)複製一份放在這裡。
 
+
+rails的沙盒系统，可以在里面
+rails console --sandbox
+
+
+Here we’ve used rails test:models to run just the model tests (compare to rails test:integration
